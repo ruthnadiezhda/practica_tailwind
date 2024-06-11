@@ -17,18 +17,34 @@ function Details() {
     <>
       <NavBar />
       {!product && <Hero first="NOT" second="found" />}
-      <main>
-        <div className={styles["details-container"]}>
+      <main className="
+      sm:w-full sm:flex sm:justify-center sm:items-center sm:p-[20px]
+      w-full flex justify-center items-center p-[15px]
+      ">
+        <div className="
+        sm:w-[1080px] sm:flex sm:flex-wrap sm:justify-between 
+        w-full flex flex-grow justify-center items-center
+        ">
           {product && (
-            <div id="details" className={styles["columns-container"]}>
+            <div id="details" className="
+            sm:flex sm:justify-center sm:flex-wrap
+            flex flex-wrap justify-start items-center
+            ">
               <Thumbs product={product} />
               <Description product={product} />
               <Checkout product={product} />
             </div>
           )}
-          <div className={styles["sales-block"]}>
-            <h2 className={styles["sales-title"]}>Week Sale</h2>
-            <div id="product-container" className={styles["product-container"]}>
+          <div className="
+          sm:w-[1080px] sm:flex sm:flex-wrap sm:justify-center sm:my-[20px] sm:mx-0 
+          ">
+            <h2 className="
+            sm:text-center sm:text-[40px]
+            ">Week Sale</h2>
+            <div id="product-container" className="
+            sm:w-[1080px] sm:flex sm:flex-wrap sm:justify-between
+            flex justify-center flex-wrap
+            ">
               {onsale.map((each) => (
                 <ProductCard
                   key={each.id}

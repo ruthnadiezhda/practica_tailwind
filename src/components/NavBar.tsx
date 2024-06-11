@@ -81,7 +81,7 @@ export default function NavBar() {
       </div>
       <nav id="navbar" className="
       sm:w-full sm:py-[15px] sm:px-[20px] sm:bg-[#ff3b3c] sm:flex sm:justify-between sm:list-none sm:text-[14px]
-      w-full py-[15px] px-[15px] bg-[#57cdfc] flex justify-between list-none text-auto
+      w-full bg-[#57cdfc] flex flex-row justify-around list-none grow
       ">
         <NavButton title="Ofertas" link="/" />
         <NavButton title="Cómo comprar" link="/" />

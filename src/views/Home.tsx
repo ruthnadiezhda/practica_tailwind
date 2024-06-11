@@ -12,7 +12,10 @@ function Home() {
       <Hero first="tecnologia" second="renovada" />
       <div className="w-full h-[50px] bg-purple-800 text-white text-center pt-3"> CAJA DE PRUEBA</div>
       <main>
-        <div className="w-[1080px] flex flex-wrap justify-between" id="products">
+        <div className="
+        sm:w-[1080px] sm:flex sm:flex-wrap sm:justify-between
+        w-full flex flex-wrap justify-center
+        " id="products">
           {products.map((each) => (
             <ProductCard
               key={each.id}
