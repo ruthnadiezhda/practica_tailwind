@@ -3,8 +3,13 @@ import styles from "./Footer.module.css";
 export default function Footer() {
   return (
     <>
-      <footer className="w-full h-min-[250px] bg-[#7525a7] flex flex-col items-center">
-        <div id="footer" className="w-[1080px] flex justify-between p-2.5">
+      <footer className="
+      sm:w-full sm:h-min-[250px] sm:bg-[#7525a7] sm:flex sm:flex-col sm:items-center
+      w-full flex flex-col bg-[#419428] text-center items-center
+      "> 
+        <div id="footer" className="
+        sm:w-full sm:flex sm:justify-between sm:p-5 
+        ">
           <ul className="w-[170px] p-2.5 list-none">
             <li className="font-bold pb-5">
               <a className="text-white no-underline" href="./index.html">
@@ -91,7 +96,10 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <div className="w-[1080px] border-t-[1px] border-t-[#ba53fb] text-center text-white font-bold py-[30px] box-border">
+        <div className="
+        sm:w-full sm:border-t-[1px] sm:border-t-[#ba53fb] sm:text-center sm:text-white sm:font-bold sm:py-[30px] sm:box-border
+        w-full border-t-[2px] border-t-[#a8ef34] text-center text-white font-bold box-border py-[30px]
+        ">
           Curso de HTML + CSS 2023
         </div>
       </footer>
