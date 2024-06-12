@@ -1,4 +1,4 @@
-import styles from "./Cart.module.css";
+//import styles from "./Cart.module.css";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Hero from "../components/Hero";
