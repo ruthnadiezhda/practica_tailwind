@@ -36,15 +36,16 @@ function Details() {
             </div>
           )}
           <div className="
-          sm:w-full sm:flex sm:flex-wrap sm:justify-center sm:my-[20px] sm:mx-0 
+          sm:w-full sm:flex sm:flex-col sm:justify-center sm:my-[20px] sm:mx-0 
           w-full flex flex-wrap justify-center items-center
           ">
             <h2 className="
             sm:text-center sm:text-[40px]
+            text-center text-[40px] 
             ">Week Sale</h2>
             <div id="product-container" className="
             sm:w-[1080px] sm:flex sm:flex-wrap sm:justify-between
-            flex flex-wrap justify-center
+            flex flex-wrap justify-center w-full
             ">
               {onsale.map((each) => (
                 <ProductCard

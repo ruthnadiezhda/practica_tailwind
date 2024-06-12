@@ -13,7 +13,7 @@ function Home() {
       <div className="w-full h-[50px] bg-purple-800 text-white text-center pt-3"> CAJA DE PRUEBA</div>
       <main>
         <div className="
-        sm:w-[1080px] sm:flex sm:flex-wrap sm:justify-between
+        sm:w-full sm:flex sm:flex-wrap sm:justify-between sm:grow
         w-full flex flex-wrap justify-center
         " id="products">
           {products.map((each) => (
