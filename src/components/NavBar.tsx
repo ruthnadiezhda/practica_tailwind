@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function NavBar() {
   return (
     <header className="
-    sm:w-full sm:h-[150px] sm:bg-[#ff3b3c] sm:pt-[20px] sm:pr-[20px] sm:pb-[0px] sm:pl-[20px] sm:flex sm:flex-col sm:items-center
+    sm:w-full sm:h-[160px] sm:bg-[#ff3b3c] sm:pt-[20px] sm:pr-[20px] sm:pb-[0px] sm:pl-[20px] sm:flex sm:flex-col sm:items-center
     w-full h-[150px] bg-[#57cdfc] p-[10px] flex flex-col items-center
     ">
       <div className="

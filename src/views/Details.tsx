@@ -23,12 +23,12 @@ function Details() {
       ">
         <div className="
         sm:w-[1080px] sm:flex sm:flex-wrap sm:justify-between 
-        w-full flex flex-grow justify-center items-center
+        w-full flex flex-col justify-center items-center
         ">
           {product && (
             <div id="details" className="
             sm:flex sm:justify-center sm:flex-wrap
-            flex flex-wrap justify-start items-center
+            flex flex-wrap justify-center items-center
             ">
               <Thumbs product={product} />
               <Description product={product} />
@@ -37,13 +37,14 @@ function Details() {
           )}
           <div className="
           sm:w-[1080px] sm:flex sm:flex-wrap sm:justify-center sm:my-[20px] sm:mx-0 
+          w-full flex flex-wrap justify-center items-center
           ">
             <h2 className="
             sm:text-center sm:text-[40px]
             ">Week Sale</h2>
             <div id="product-container" className="
             sm:w-[1080px] sm:flex sm:flex-wrap sm:justify-between
-            flex justify-center flex-wrap
+            flex flex-wrap justify-center
             ">
               {onsale.map((each) => (
                 <ProductCard
