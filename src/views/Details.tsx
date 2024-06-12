@@ -22,7 +22,7 @@ function Details() {
       w-full flex justify-center items-center p-[15px]
       ">
         <div className="
-        sm:w-[1080px] sm:flex sm:flex-wrap sm:justify-between 
+        sm:w-full sm:flex sm:flex-wrap sm:justify-between 
         w-full flex flex-col justify-center items-center
         ">
           {product && (
@@ -36,7 +36,7 @@ function Details() {
             </div>
           )}
           <div className="
-          sm:w-[1080px] sm:flex sm:flex-wrap sm:justify-center sm:my-[20px] sm:mx-0 
+          sm:w-full sm:flex sm:flex-wrap sm:justify-center sm:my-[20px] sm:mx-0 
           w-full flex flex-wrap justify-center items-center
           ">
             <h2 className="
