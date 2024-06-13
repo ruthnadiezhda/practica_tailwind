@@ -2,9 +2,20 @@ import styles from "../views/Cart.module.css";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Hero from "../components/Hero";
+import { useRef } from "react";
 
-export default function CartCard({title, photo, description, price, quantity, color}){
-return(
+export default function CartCard({id,title, photo, description, price, quantity, color, updateCart}){
+//Importar hook de referencia
+const units = useRef();
+//Función cambio de unidades del carrito
+const manageUnits = () => {
+    let productsOnCart = productsOnCart = JSON.parse(localStorage.getItem("cart"));
+    const one = productsOnCart.find((each) => each.id === id);
+    one.units = Number(units.current.value);
+    localStorage.setItem("cart", JSON.stringify(productsOnCart));
+    updateCart(productsOnCart);
+};
+    return(
     <article className="
     sm:bg-[#f2f2f2] sm:rounded-[5px] sm:p-[30px] sm:m-[10px] sm:h-[220px] sm:break-words sm:flex sm:justify-between sm:w-[680px] sm:items-center
     bg-[#f2f2f2] rounded-[5px] h-full break-words flex justify-around w-full items-center p-[10px]
@@ -26,8 +37,10 @@ return(
         font-bold text-[14px] w-full justif-between
         ">{title}</strong>
         <span className="
+        whitespace-nowrap overflow-hidden truncate
         ">{color}</span>
         <p className="
+        whitespace-nowrap overflow-hidden truncate w-full
         ">{description}
         </p>
         <input
@@ -38,8 +51,10 @@ return(
             type="number"
             name="quantity"
             defaultValue={quantity}
+            ref={units}
+            onChange={manageUnits}
             min="1"
-            id="P7Q8R90"
+            id={id}
         />
         </div>
         <strong className="
@@ -47,5 +62,5 @@ return(
         font-bold text-[14px] justify-center items-start
         ">AR$ ${price}</strong>
     </article> 
-);
+    );
 }
