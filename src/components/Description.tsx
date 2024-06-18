@@ -1,6 +1,7 @@
 import styles from "./Description.module.css"
+import ProductProp from "../interfaces/ProductProp"
 
-export default function Description({ product }) {
+export default function Description({product}:ProductProp) {
     return <section className={styles["product-description-block"]}>
     <h1 className={styles["product-title"]}>{product.title}</h1>
     <form className={styles["product-selector"]}>

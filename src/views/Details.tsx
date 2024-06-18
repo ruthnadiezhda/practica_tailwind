@@ -8,11 +8,12 @@ import ProductCard from "../components/ProductCard";
 import Thumbs from "../components/Thumbs";
 import Description from "../components/Description";
 import Checkout from "../components/Checkout";
+import Product from "../interfaces/Products";
 
 function Details() {
   const { id } = useParams();
-  const product = products.find((each) => each.id === id);
-  const onsale = products.filter((each) => each.onsale);
+  const product:Product = products.find((each) => each.id === id);
+  const onsale:Product[] = products.filter((each) => each.onsale);
   return (
     <>
       <NavBar />
@@ -47,14 +48,14 @@ function Details() {
             sm:w-[1080px] sm:flex sm:flex-wrap sm:justify-between
             flex flex-wrap justify-center w-full
             ">
-              {onsale.map((each) => (
+              {onsale.map((each:Product) => (
                 <ProductCard
                   key={each.id}
                   id={each.id}
                   title={each.title}
                   price={each.price}
-                  color={each.colors[0]}
-                  image={each.images[0]}
+                  colors={each.colors}
+                  images={each.images}
                 />
               ))}
             </div>

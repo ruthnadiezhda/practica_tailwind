@@ -5,6 +5,7 @@ import Hero from "../components/Hero";
 import CartCard from "../components/CartCard";
 import CartResume from "../components/CartResume";
 import { useEffect, useState } from "react";
+import Product from "../interfaces/Products";
 
 function Cart() {
 //Importación del hook de estado
@@ -14,12 +15,12 @@ const [cartTotal, setCartTotal] = useState(0);
 //Variable de precio total
 const totalPrice = productsOnCart.reduce((acc, e)=>acc+ e.price*e.units , 0);
 //Función calcular el total del carrito
-const calculateCartTotal = (products) => {
+const calculateCartTotal = (products:Product[]) => {
     const total = products.reduce((acc, product) => acc + product.price * product.units, 0);
     setCartTotal(total);
   };
 //Función actualizar el carrito
-  const updateCart = (updatedProducts) => {
+  const updateCart = (updatedProducts:Product[]) => {
     setProductsOnCart(updatedProducts);
     calculateCartTotal(updatedProducts);
     localStorage.setItem("cart", JSON.stringify(updatedProducts));
@@ -27,7 +28,7 @@ const calculateCartTotal = (products) => {
 //Importación de hook de efecto para poner productos al card
 useEffect(() => {
   if (localStorage.getItem("cart")) {
-    const products = JSON.parse(localStorage.getItem("cart"));
+    const products = JSON.parse(localStorage.getItem("cart")??"[]");
     setProductsOnCart(products);
   }
 }, []);
@@ -42,7 +43,7 @@ return (
         <section className="
         sm:flex sm:flex-col
         ">
-        {productsOnCart.map((each) =>(
+        {productsOnCart.map((each:Product) =>(
         <CartCard
           key={each.id}
           id={each.id}

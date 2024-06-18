@@ -3,15 +3,16 @@ import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Hero from "../components/Hero";
 import { useRef } from "react";
+import CartCardProps from "../interfaces/CartCardProp";
 
-export default function CartCard({id,title, photo, description, price, quantity, color, updateCart}){
+export default function CartCard({id,title, photo, description, price, quantity, color, updateCart}:CartCardProps){
 //Importar hook de referencia
 const units = useRef();
 //Función cambio de unidades del carrito
 const manageUnits = () => {
-    let productsOnCart = productsOnCart = JSON.parse(localStorage.getItem("cart"));
+    let productsOnCart = productsOnCart = JSON.parse(localStorage.getItem("cart")??"[]");
     const one = productsOnCart.find((each) => each.id === id);
-    one.units = Number(units.current.value);
+    one.units = Number(units.current?.value);
     localStorage.setItem("cart", JSON.stringify(productsOnCart));
     updateCart(productsOnCart);
 };

@@ -2,8 +2,9 @@ import styles from "../views/Cart.module.css";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Hero from "../components/Hero";
+import CartResumeProps from "../interfaces/CartResumeProp";
 
-export default function CartResume({price}){
+export default function CartResume({price}:CartResumeProps){
 return(
     <div className="
         sm:w-[340px] sm:flex-col
