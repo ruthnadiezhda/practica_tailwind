@@ -3,7 +3,7 @@ import Product from "./Products";
 export default interface CartCardProps {
     id:string;
     title:string;
-    image:string;
+    photo:string;
     description:string;
     price: number;
     quantity: number;
