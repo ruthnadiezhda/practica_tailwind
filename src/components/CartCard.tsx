@@ -5,7 +5,7 @@ import Hero from "../components/Hero";
 import { useRef } from "react";
 import CartCardProps from "../interfaces/CartCardProp";
 
-export default function CartCard({id,title, photo, description, price, quantity, color, updateCart}:CartCardProps){
+export default function CartCard({id,title, image, description, price, quantity, color, updateCart}:CartCardProps){
 //Importar hook de referencia
 const units = useRef();
 //Función cambio de unidades del carrito
@@ -26,7 +26,7 @@ const manageUnits = () => {
         sm:w-[100px] sm:h-[120px] sm:rounded-[5px]
         w-1/3 h-1/3 rounded-[5px] flex items-center grow justify-start
         "
-        src={photo}
+        src={image}
         alt={title}
         />
         <div className="
