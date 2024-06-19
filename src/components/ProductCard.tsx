@@ -1,9 +1,13 @@
 import styles from "./ProductCard.module.css";
 import { Link } from "react-router-dom";
 import ProductCardProps from "../interfaces/ProductCard";
+import { UseSelector, useSelector } from "react-redux";
 
 export default function ProductCard(props: ProductCardProps) {
   const { id, title, price, colors, images } = props;
+  //Selector de almacenamiento entero de products -> no recomendable usar el store completo
+  const store = useSelector( store => store);
+  console.log(store);
   return (
     <Link className={styles["product-card"]} to={"/details/" + id}>
       <img className={styles["product-img"]} src={images[0]} alt={title} />

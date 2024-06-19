@@ -2,18 +2,51 @@ import { useParams } from "react-router-dom";
 import styles from "./Details.module.css";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
-import products from "../assets/products";
+//import products from "../assets/products";
 import Hero from "../components/Hero";
 import ProductCard from "../components/ProductCard";
 import Thumbs from "../components/Thumbs";
 import Description from "../components/Description";
 import Checkout from "../components/Checkout";
 import Product from "../interfaces/Products";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function Details() {
-  const { id } = useParams();
-  const product:Product = products.find((each) => each.id === id);
-  const onsale:Product[] = products.filter((each) => each.onsale);
+
+  const [product, setProduct] = useState<Product>({
+    id: "",
+    title: "",
+    description: "",
+    price: 0,
+    quantity: 0,
+    images: [],
+    colors: [],
+});
+  const [onsale, setOnSale] = useState<Product[]>([]);
+  const {id} = useParams();
+  useEffect(() => {
+    axios("/products.json")
+      .then((res) => {
+          const products: Array<Product> = res.data;
+          const detailProduct: Product | undefined = products.find(
+            (each) => each.id === id
+          );
+          if (detailProduct) {
+            setProduct(detailProduct);
+          }
+          const filterProducts: Array<Product> = products.filter(
+            (each) => each.onsale
+          );
+          if (filterProducts.length > 0){
+            setOnSale(filterProducts);
+          }
+      })
+      .catch((err) => console.log(err));
+}, [id]);
+  //const product:Product = products.find((each) => each.id === id);
+  //const onsale:Product[] = products.filter((each) => each.onsale);
+
   return (
     <>
       <NavBar />

@@ -1,8 +1,23 @@
 import styles from "./NavBar.module.css";
 import NavButton from "./NavButton";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
+import { UseDispatch, useDispatch } from "react-redux";
+import productsActions from "../store/actions/products";
+
+const {captureText} = productsActions
 
 export default function NavBar() {
+  //Con useRef voy a definir la referencia
+  const text = useRef();
+  const dispatch = useDispatch();
+  const setText = () => {
+    //Dispatch permite ejecutar una acción
+    dispatch(captureText({
+      text: text.current?.value
+    }));
+  };
+
   return (
     <header className="
     sm:w-full sm:h-[160px] sm:bg-[#ff3b3c] sm:pt-[20px] sm:pr-[20px] sm:pb-[0px] sm:pl-[20px] sm:flex sm:flex-col sm:items-center
@@ -35,6 +50,8 @@ export default function NavBar() {
             type="text"
             placeholder="Search"
             id="search"
+            ref = {text}
+            onChange = {setText}
           />
         </form>
         <ul className="

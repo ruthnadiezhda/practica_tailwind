@@ -3,10 +3,29 @@ import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import NavBar from "../components/NavBar";
 import ProductCard from "../components/ProductCard";
-import products from "../assets/products";
+//import products from "../assets/products";
 import Product from "../interfaces/Products";
+import axios from "axios";
+import { useEffect, useState } from "react";
+//Hook para seleccionar estados de almacenamiento global
+import { UseSelector, useSelector } from "react-redux";
 
 function Home() {
+  
+  const [products, setProducts] = useState<Product[]>([]);
+  //Devuelva el estado de products
+  const text = useSelector (store => store.products.text);
+  console.log(text);
+  //El text cada vez que el usuario ejecute una tecla debe correr el efecto
+  useEffect(() => {
+    axios
+      .get("/products.json")
+      .then((res) => {
+          const filterData = res.data.filter(each => each.title.toLowerCase().includes(text.toLowerCase()));
+          setProducts(filterData);
+      })
+      .catch((err) => console.log(err));
+  },[text]);
   return (
     <>
       <NavBar />
