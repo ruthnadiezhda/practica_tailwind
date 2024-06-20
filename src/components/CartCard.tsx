@@ -4,18 +4,35 @@ import NavBar from "../components/NavBar";
 import Hero from "../components/Hero";
 import { useRef } from "react";
 import CartCardProps from "../interfaces/CartCardProp";
+import { UseDispatch, useDispatch } from "react-redux";
+import { calculateTotal } from "../store/actions/products";
+import Product from "../interfaces/Products";
 
-export default function CartCard({id,title, photo, description, price, quantity, color, updateCart}:CartCardProps){
+export default function CartCard(product:CartCardProps){
+//Desestructurando producto
+const {id,title, photo, description, price, quantity, color} = product;
 //Importar hook de referencia
-const units = useRef();
+const unitsToBuy = useRef();
+//Importar el dispatch
+const dispatch = useDispatch();
 //Función cambio de unidades del carrito
 const manageUnits = () => {
-    let productsOnCart = productsOnCart = JSON.parse(localStorage.getItem("cart")??"[]");
-    const one = productsOnCart.find((each) => each.id === id);
-    one.units = Number(units.current.value);
-    localStorage.setItem("cart", JSON.stringify(productsOnCart));
-    updateCart(productsOnCart);
-};
+    //Obtenemos productos del carrito
+    const productsOnCart = JSON.parse(localStorage.getItem("cart"));
+    //Creamos el array de productos
+    let products = [];
+    //Validar si el carrito está lleno
+    if (productsOnCart){
+        products = JSON.parse(productsOnCart);
+    }
+    //Recorre cada producto y machea los ids para encontrar un producto del carrito con el del codigo
+    const one = products?.find((each: Product) => each.id === product.id);
+    //Si existe entonces procede a calcular el total de productos
+    if (one){
+    one.units = Number(unitsToBuy.current.value);
+    localStorage.setItem("cart", JSON.stringify(products));
+    dispatch(calculateTotal({products}));
+}};
     return(
     <article className="
     sm:bg-[#f2f2f2] sm:rounded-[5px] sm:p-[30px] sm:m-[10px] sm:h-[220px] sm:break-words sm:flex sm:justify-between sm:w-[680px] sm:items-center
@@ -52,7 +69,7 @@ const manageUnits = () => {
             type="number"
             name="quantity"
             defaultValue={quantity}
-            ref={units}
+            ref={unitsToBuy}
             onChange={manageUnits}
             min="1"
             id={id}

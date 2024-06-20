@@ -14,6 +14,16 @@ const captureText = createAction(
     }
 );
 
-//Acciones de productos
-const productActions = {captureText};
-export default productActions;
+//Acción para calcular el total
+const calculateTotal = createAction(
+    "calculateTotal",
+    (obj) => {
+        return {
+            payload: {products: obj.products}
+        }
+    }
+);
+
+//Acciones exportadas
+export default { captureText } 
+export { calculateTotal };

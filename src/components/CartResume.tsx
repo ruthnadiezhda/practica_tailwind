@@ -3,8 +3,12 @@ import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Hero from "../components/Hero";
 import CartResumeProps from "../interfaces/CartResumeProp";
+import { UseSelector, useSelector } from "react-redux";
 
-export default function CartResume({price}:CartResumeProps){
+export default function CartResume(){
+//Variable que guarde el resultado de seleccionar el estado global TOTAL del reductor PRODUCTS
+const total = useSelector((store) => store.products.total);
+console.log(total);    
 return(
     <div className="
         sm:w-[340px] sm:flex-col
@@ -30,7 +34,7 @@ return(
                 <strong className="
                 sm:text-[16px] sm:font-bold
                 text-[14px] font-bold
-                ">${price}</strong>
+                ">${total}</strong>
             </div>
             <small className="
             sm:pb-[10px]

@@ -8,5 +8,5 @@ export default interface CartCardProps {
     price: number;
     quantity: number;
     color: string;
-    updateCart: (updatedProducts: Product[])=>void; 
+    //updateCart: (updatedProducts: Product[])=>void; 
 }

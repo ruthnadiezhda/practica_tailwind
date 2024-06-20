@@ -2,12 +2,20 @@ import styles from "./NavBar.module.css";
 import NavButton from "./NavButton";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
-import { UseDispatch, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import productsActions from "../store/actions/products";
+import { useLocation } from "react-router-dom";
+import {  useSelector } from "react-redux";
 
-const {captureText} = productsActions
+const {captureText} = productsActions;
 
 export default function NavBar() {
+  //Para corregir la barra de busqueda
+  //Variables de ruta de la aplicación
+  const location = useLocation();
+  const pathname = location.pathname;
+  //Variable para guardar el estado global text
+  const textStore = useSelector((store) => store.products.text);
   //Con useRef voy a definir la referencia
   const text = useRef();
   const dispatch = useDispatch();
@@ -42,7 +50,7 @@ export default function NavBar() {
         sm:w-1/3 sm:flex sm:items-center sm:grow sm:justify-center
         w-1/3 flex items-center grow justify-center
         ">
-          <input
+          {pathname === "/" && (<input
             className="
             sm:h-[60px] sm:rounded-[15px] sm:border-none sm:w-full sm:p-[10px] sm:my-[0px] sm:mx-[20px] sm:text-[14px] sm:text-center
             h-auto rounded-[15px] border-none w-full p-[5px] my-[0px] mx-[20px] text-auto text-center
@@ -51,8 +59,9 @@ export default function NavBar() {
             placeholder="Search"
             id="search"
             ref = {text}
+            defaultValue={textStore}
             onChange = {setText}
-          />
+          />)}
         </form>
         <ul className="
         sm:w-1/3 sm:flex sm:items-center sm:grow sm:justify-end sm:list-none

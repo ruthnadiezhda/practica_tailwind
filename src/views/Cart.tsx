@@ -6,30 +6,36 @@ import CartCard from "../components/CartCard";
 import CartResume from "../components/CartResume";
 import { useEffect, useState } from "react";
 import Product from "../interfaces/Products";
+import { UseDispatch, useDispatch } from "react-redux";
+import { calculateTotal } from "../store/actions/products";
 
 function Cart() {
 //Importación del hook de estado
-const [productsOnCart, setProductsOnCart] = useState([]);
+const [productsOnCart, setProductsOnCart] = useState<Product[]>([]);
+//Declaración del dispatch
+const dispatch = useDispatch();
 //Para actualizar el precio del carrito se importa el hook de estado
-const [cartTotal, setCartTotal] = useState(0);
+//const [cartTotal, setCartTotal] = useState(0);
 //Variable de precio total
-const totalPrice = productsOnCart.reduce((acc, e)=>acc+ e.price*e.units , 0);
+//const totalPrice = productsOnCart.reduce((acc, e)=>acc+ e.price*e.units , 0);
 //Función calcular el total del carrito
-const calculateCartTotal = (products:Product[]) => {
-    const total = products.reduce((acc, product) => acc + product.price * product.units, 0);
-    setCartTotal(total);
-  };
+//const calculateCartTotal = (products:Product[]) => {
+    //const total = products.reduce((acc, product) => acc + product.price * product.units, 0);
+    //setCartTotal(total);
+  //};
 //Función actualizar el carrito
-  const updateCart = (updatedProducts:Product[]) => {
-    setProductsOnCart(updatedProducts);
-    calculateCartTotal(updatedProducts);
-    localStorage.setItem("cart", JSON.stringify(updatedProducts));
-  };
+  //const updateCart = (updatedProducts:Product[]) => {
+    //setProductsOnCart(updatedProducts);
+    //calculateCartTotal(updatedProducts);
+    //localStorage.setItem("cart", JSON.stringify(updatedProducts));
+  //};
 //Importación de hook de efecto para poner productos al card
+//A este se modifica y se agrega el dispach para que se envien al reductor de la acción correspondiente
 useEffect(() => {
-  if (localStorage.getItem("cart")) {
-    const products = JSON.parse(localStorage.getItem("cart")??"[]");
-    setProductsOnCart(products);
+  const products = localStorage.getItem("cart");
+  if (products) {
+    setProductsOnCart(JSON.parse(products));
+    dispatch(calculateTotal({products: JSON.parse(products)}));
   }
 }, []);
 
@@ -53,12 +59,10 @@ return (
           price={each.price}
           quantity={each.units}
           color={each.colors[0]}
-          updateCart={updateCart}
       />
         ))}
         </section>
-        <CartResume
-        price ={totalPrice}/>
+        <CartResume/>
       </main>
       <Footer />
     </>
