@@ -24,6 +24,26 @@ const calculateTotal = createAction(
     }
 );
 
+//Acción para agregar un producto al carrito
+const addToCart = createAction(
+    "addToCart",
+    (obj) => {
+        return {
+            payload: {products: obj.products}
+        }
+    }
+);
+
+//Acción para eliminar un producto del carrito
+const removeFromCart = createAction(
+    "removeFromCart",
+    (obj) => {
+        return {
+            payload: {id: obj.id}
+        }
+    }
+)
+
 //Acciones exportadas
 export default { captureText } 
-export { calculateTotal };
+export { calculateTotal, removeFromCart, addToCart };

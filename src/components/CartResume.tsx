@@ -23,6 +23,7 @@ const clickButton =() => {
             Swal.fire('¡Compra realizada!', '', 'success');
             // Borra los productos del localStorage
             localStorage.clear();
+            //Recargar la página
             location.reload();
         } else {
             Swal.fire('Compra cancelada','','info');
