@@ -6,7 +6,7 @@ import CartCard from "../components/CartCard";
 import CartResume from "../components/CartResume";
 import { useEffect, useState } from "react";
 import Product from "../interfaces/Products";
-import { UseDispatch, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { calculateTotal } from "../store/actions/products";
 
 function Cart() {
